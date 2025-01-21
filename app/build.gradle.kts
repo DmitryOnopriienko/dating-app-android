@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.onopriienko.datingapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -43,6 +43,13 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
+    implementation(libs.logging.interceptor)
+
+    implementation(libs.coil.compose)
+
+    implementation(libs.androidx.navigation.compose.v285)
+
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
