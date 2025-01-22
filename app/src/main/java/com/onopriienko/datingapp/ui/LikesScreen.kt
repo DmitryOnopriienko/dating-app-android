@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -68,16 +69,34 @@ fun LikesScreen(userId: String, navController: NavHostController) {
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             BottomAppBar {
-                IconButton(onClick = { navController.navigate("settings") }) {
-                    Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    IconButton(onClick = { navController.navigate("settings") }) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Налаштування")
+                    }
                 }
-                Spacer(modifier = Modifier.weight(1f, true))
-                IconButton(onClick = { navController.navigate("likes/$userId") }) {
-                    Icon(Icons.Filled.Favorite, contentDescription = "Likes")
+
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    IconButton(onClick = { navController.navigate("likes/$userId") }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = "Головна")
+                    }
                 }
-                Spacer(modifier = Modifier.weight(1f, true))
-                TextButton(onClick = { navController.navigate("mutual_likes") }) {
-                    Text("Likes")
+
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = { navController.navigate("mutual_likes") }
+                    ) {
+                        Text("Взаємні вподобайки", textAlign = TextAlign.Center)
+                    }
                 }
             }
         }
@@ -104,13 +123,13 @@ fun LikesScreen(userId: String, navController: NavHostController) {
                 imageBitmap?.let {
                     Image(
                         bitmap = it.asImageBitmap(),
-                        contentDescription = "User picture",
+                        contentDescription = "Фото користувача",
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(400.dp)
                     )
                 } ?: Text(
-                    text = "No picture available",
+                    text = "Зображення недоступне",
                     modifier = Modifier.padding(16.dp)
                 )
 
@@ -142,7 +161,7 @@ fun LikesScreen(userId: String, navController: NavHostController) {
                             loadNextUser()
                         }
                     }) {
-                        Text("Like")
+                        Text("❤️")
                     }
                     Button(onClick = {
                         coroutineScope.launch {
@@ -156,13 +175,13 @@ fun LikesScreen(userId: String, navController: NavHostController) {
                             loadNextUser()
                         }
                     }) {
-                        Text("Dislike")
+                        Text("❌")
                     }
                 }
             }
         } ?: run {
             Text(
-                text = "No more users to react to",
+                text = "Більше немає доступних користувачів",
                 modifier = Modifier
                     .fillMaxSize()
                     .wrapContentSize(Alignment.Center)

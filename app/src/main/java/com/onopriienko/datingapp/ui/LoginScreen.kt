@@ -78,12 +78,12 @@ fun LoginScreen(navController: NavController) {
                             } else {
                                 showToast(
                                     context,
-                                    "Error: ${response.code()} ${response.message()}"
+                                    "Помилка: ${response.code()} ${response.message()}"
                                 )
                             }
                         } catch (e: Exception) {
                             e.printStackTrace()
-                            showToast(context, "Error: ${e.message}")
+                            showToast(context, "Помилка: ${e.message}")
                         }
                     }
                 },

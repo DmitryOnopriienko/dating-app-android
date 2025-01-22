@@ -7,8 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object UserApiClient {
+//    for local start up (change to your computer local net IP)
 //    private const val BASE_URL = "http://192.168.1.120:8080"
-    private const val BASE_URL = "http://10.18.164.251:8080"    // TODO remove it
+    private const val BASE_URL = "http://16.170.244.206:8080/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

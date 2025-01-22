@@ -45,7 +45,7 @@ fun ImageUploadComponent(
                 onImageSelected(uri)
                 errorMessage = ""
             } else {
-                errorMessage = "File size must be less than 2MB"
+                errorMessage = "Розмір файлу має бути менше 1MB"
                 onError(errorMessage)
             }
         }
@@ -59,7 +59,7 @@ fun ImageUploadComponent(
         Button(
             onClick = { launcher.launch("image/*") }
         ) {
-            Text("Upload Profile Picture")
+            Text("Загрузити зображення")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -68,7 +68,7 @@ fun ImageUploadComponent(
         imageUri?.let {
             Image(
                 painter = rememberImagePainter(it),
-                contentDescription = "Profile Picture",
+                contentDescription = "Зображення профілю",
                 modifier = Modifier.size(100.dp)
             )
         }

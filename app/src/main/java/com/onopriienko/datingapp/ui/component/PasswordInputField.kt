@@ -35,8 +35,8 @@ fun PasswordInputField(
             onPasswordChange(it)
 
             passwordError = when {
-                it.length < 6 -> "Password must be at least 6 characters long"
-                !it.matches(Regex("^[a-zA-Z0-9]*\$")) -> "Password can only contain Latin letters and numbers"
+                it.length < 6 -> "Пароль має складатись мінімум з 6 символів"
+                !it.matches(Regex("^[a-zA-Z0-9]*\$")) -> "Пароль може складатись тільки з латинських букв та цифр"
                 else -> null
             }
         },
@@ -51,7 +51,7 @@ fun PasswordInputField(
                 Icons.Filled.VisibilityOff
             }
 
-            val description = if (passwordVisible) "Hide password" else "Show password"
+            val description = if (passwordVisible) "Скрити пароль" else "Показати пароль"
 
             IconButton(onClick = { passwordVisible = !passwordVisible }) {
                 Icon(imageVector = image, contentDescription = description)

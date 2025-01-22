@@ -61,16 +61,34 @@ fun MutualLikesScreen(navController: NavHostController) {
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             BottomAppBar {
-                IconButton(onClick = { navController.navigate("settings") }) {
-                    Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    IconButton(onClick = { navController.navigate("settings") }) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Налаштування")
+                    }
                 }
-                Spacer(modifier = Modifier.weight(1f, true))
-                IconButton(onClick = { navController.navigate("likes/$userId") }) {
-                    Icon(Icons.Filled.Favorite, contentDescription = "Likes")
+
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    IconButton(onClick = { navController.navigate("likes/$userId") }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = "Головна")
+                    }
                 }
-                Spacer(modifier = Modifier.weight(1f, true))
-                TextButton(onClick = { navController.navigate("mutual_likes") }) {
-                    Text("Likes")
+
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = { navController.navigate("mutual_likes") }
+                    ) {
+                        Text("Взаємні вподобайки", textAlign = TextAlign.Center)
+                    }
                 }
             }
         }
@@ -78,7 +96,7 @@ fun MutualLikesScreen(navController: NavHostController) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(8.dp)
+            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 16.dp)
         ) {
             items(mutualLikes.size) { index ->
                 val user = mutualLikes[index]

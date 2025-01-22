@@ -3,7 +3,7 @@ package com.onopriienko.datingapp.ui
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.onopriienko.datingapp.IS_LOGGED_IN
@@ -37,16 +38,34 @@ fun SettingsScreen(navController: NavHostController) {
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             BottomAppBar {
-                IconButton(onClick = { navController.navigate("settings") }) {
-                    Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    IconButton(onClick = { navController.navigate("settings") }) {
+                        Icon(Icons.Filled.Settings, contentDescription = "Налаштування")
+                    }
                 }
-                Spacer(modifier = Modifier.weight(1f, true))
-                IconButton(onClick = { navController.navigate("likes/$userId") }) {
-                    Icon(Icons.Filled.Favorite, contentDescription = "Likes")
+
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    IconButton(onClick = { navController.navigate("likes/$userId") }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = "Головна")
+                    }
                 }
-                Spacer(modifier = Modifier.weight(1f, true))
-                TextButton(onClick = { navController.navigate("mutual_likes") }) {
-                    Text("Likes")
+
+                Row(
+                    modifier = Modifier.weight(1f, fill = true),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = { navController.navigate("mutual_likes") }
+                    ) {
+                        Text("Взаємні вподобайки", textAlign = TextAlign.Center)
+                    }
                 }
             }
         }
@@ -55,11 +74,11 @@ fun SettingsScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Bottom,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Settings",
+                text = "Налаштування",
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
@@ -74,7 +93,7 @@ fun SettingsScreen(navController: NavHostController) {
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Log Out")
+                Text("Вийти з аккаунту")
             }
         }
     }

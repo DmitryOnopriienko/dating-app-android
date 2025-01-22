@@ -65,11 +65,11 @@ fun RegistrationScreen(onRegistrationSuccess: (String) -> Unit) {
             if (response.isSuccessful) {
                 cities = response.body() ?: emptyList()
             } else {
-                showToast(context, "Error: ${response.code()} ${response.message()}")
+                showToast(context, "Помилка: ${response.code()} ${response.message()}")
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            showToast(context, "Error: ${e.message}")
+            showToast(context, "Помилка: ${e.message}")
         }
     }
 
