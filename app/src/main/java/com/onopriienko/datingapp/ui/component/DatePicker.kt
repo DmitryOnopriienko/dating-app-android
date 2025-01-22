@@ -48,6 +48,7 @@ fun DatePicker(
             calendar.get(Calendar.DAY_OF_MONTH)
         ).apply {
             datePicker.maxDate = maxDateInMillis
+            setOnDismissListener { showModal = false }
         }.show()
     }
 
